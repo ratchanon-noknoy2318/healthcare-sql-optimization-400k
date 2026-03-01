@@ -6,9 +6,9 @@ SELECT
     nd.icode,
     nd.name AS service_name
 FROM ovst o
-JOIN opitemrece oi 
+LEFT JOIN opitemrece oi 
     ON o.vn = oi.vn
-JOIN nondrugitems nd 
+LEFT JOIN nondrugitems nd 
     ON oi.icode = nd.icode
 LEFT JOIN patient p 
     ON o.hn = p.hn
