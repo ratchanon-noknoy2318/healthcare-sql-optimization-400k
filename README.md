@@ -1,42 +1,122 @@
-# HOSxP Data Integration Pipeline
-**Kamphaeng Phet Municipality Community Hospital**
+# HOSxP Analytics Pipeline
+
+A SQL-based data pipeline for extracting, transforming, and analyzing operational data from legacy HOSxP hospital systems.
 
 ---
 
-### 1. Data Scale & Infrastructure
-| Metric | Specification | Technical Detail |
-| :--- | :--- | :--- |
-| **Data Volume** | **400,000+ Records** | Patient Master Data Management (MDM) |
-| **Database Engine** | MySQL / MariaDB | HOSxP Production Environment |
-| **Query Tuning** | Optimized Indexing | Support for high-concurrency access |
-| **Compliance** | PDPA Thailand | SQL-level Data Masking & Minimization |
+## Overview
+
+This project provides a structured approach to working with highly normalized and undocumented hospital databases.
+
+It enables reliable analytics across outpatient (OPD) workflows by simplifying complex joins and improving query performance.
 
 ---
 
-### 2. Structural Pipeline Architecture
-| Operational Layer | Implementation | AI & Logic | Strategic Impact |
-| :--- | :--- | :--- | :--- |
-| **Executive** | Analytical Views | Pattern Analysis | Policy-Driven Decisions |
-| **Auditing** | SQL Validations | AI Anomaly Detection | Zero-Error Data Integrity |
-| **Automation** | Stored Procedures | Event Triggers | Operational Efficiency |
-| **Security** | PK Constraints | Integrity Checks | Secure Patient Data |
+## Architecture
+
+```
+HOSxP (MySQL)
+    ↓
+SQL ETL Layer
+    ↓
+Analytics Views
+    ↓
+Dashboards / Reports
+```
 
 ---
 
-### 3. Database Schema (Patient Master)
-| Field | Type / Constraint | Functional Role |
-| :--- | :--- | :--- |
-| **hn** | **VARCHAR(10) [PK]** | Primary Hospital Anchor |
-| **citizen_id** | VARCHAR(13) [UNIQUE]| Identity Verification |
-| **full_name** | VARCHAR(200) | Patient Identification |
-| **birthdate** | DATE | AI Age-Validation Basis |
-| **location** | TEXT | Resource Logistics |
+## Data Model (OPD)
+
+### Core Entities
+
+* `patient` — patient demographics
+* `ovst` — outpatient visits
+* `ovstdiag` — diagnoses
+* `opdscreen` — screening data
+* `vn_stat` — visit-level financial summary
+
+### Billing
+
+* `opitemrece` — billing line items
+* `drugitems` — drug catalog
+* `nondrugitems` — non-drug services
+
+### Reference Data
+
+* `pttype`, `pttypeno` — insurance / coverage
+* `spclty`, `kskdepartment`, `clinic` — organization structure
+* `doctor`, `opduser` — staff
+
+### Clinical Coding
+
+* `icd101` — ICD-10
+* `icd9cm1` — ICD-9
+* `diagtype` — diagnosis types
+
+### Supporting
+
+* `lab_head`, `lab_order` — laboratory data
+* `oapp` — appointments
+* `thaiaddress` — address hierarchy
 
 ---
 
-### 4. Professional Contact
-| Entity | Reference |
-| :--- | :--- |
-| **Lead Engineer** | **Ratchanon Noknoy** |
-| **Digital Profile** | [LinkedIn](https://linkedin.com/in/ratchanon-noknoy/) / [GitHub](https://github.com/ratchanon-noknoy2318) |
-| **Email** | ratchanon.noknoy2318@gmail.com |
+## Example Query
+
+```sql
+SELECT
+  o.vstdate,
+  COUNT(DISTINCT o.vn) AS visit_count
+FROM ovst o
+GROUP BY o.vstdate
+ORDER BY o.vstdate;
+```
+
+---
+
+## Design Principles
+
+* **SQL-first**
+  All transformations and analytics are implemented in SQL.
+
+* **Minimal infrastructure**
+  Avoid external dependencies; leverage existing MySQL systems.
+
+* **Performance-oriented**
+  Optimize joins, indexing, and aggregation for large datasets.
+
+* **Incremental development**
+  Improve queries without disrupting production workflows.
+
+---
+
+## Challenges
+
+* Undocumented schema
+* Deeply nested relationships
+* High join complexity
+* Query performance at scale
+
+---
+
+## Repository Structure
+
+```
+Database/   schema exploration
+SQL/        ETL and analytics queries
+```
+
+---
+
+## Future Work
+
+* Introduce a data warehouse layer (star schema)
+* Add orchestration (e.g., scheduled ETL)
+* Implement data validation and monitoring
+
+---
+
+## License
+
+MIT
