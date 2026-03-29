@@ -2,11 +2,7 @@ SELECT
     p.prename        AS `คำนำหน้า`,
     p.fname          AS `ชื่อ`,
     p.lname          AS `นามสกุล`,
-    CASE p.sex
-        WHEN 1 THEN 'Male'
-        WHEN 2 THEN 'Female'
-        ELSE 'Unknown'
-    END AS `เพศ`,
+    p.sex            AS `เพศ`,
     RIGHT(p.birth,2) AS `วันเกิด`,
     MID(p.birth,6,2) AS `เดือนเกิด`,
     YEAR(p.birth)    AS `ปีเกิด`,
