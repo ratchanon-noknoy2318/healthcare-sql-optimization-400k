@@ -10,109 +10,81 @@
 
 ## Overview
 
-This project is a healthcare data engineering pipeline designed to extract, interpret, and transform data from a legacy HOSxP hospital information system into structured, analysis-ready datasets.
+This project focuses on extracting and interpreting data from a legacy HOSxP hospital database to support operational reporting and analysis.
 
-The system operates in a low-documentation environment where data understanding relies on schema exploration, domain collaboration, and iterative SQL-based investigation.
-
----
-
-## Problem Statement
-
-Hospital operational data stored in HOSxP presents several challenges:
-
-- Complex relational database structure with 50+ tables
-- Limited documentation of clinical meaning at field level
-- Fragmented understanding between technical schema and clinical workflows
-- High dependency on manual interpretation for reporting and analysis
-
-These limitations reduce efficiency in healthcare reporting and data-driven decision-making.
+The work was performed in a low-documentation environment, requiring direct exploration of database schemas and validation with healthcare staff.
 
 ---
 
-## Objectives
+## Problem Context
 
-The primary objectives of this project are:
+The HOSxP database presents several practical challenges:
 
-- Extract relevant clinical and operational data from HOSxP
-- Translate raw database structures into meaningful healthcare concepts
-- Establish a repeatable data investigation and transformation workflow
-- Enable structured datasets for downstream reporting and analytics use cases
-- Improve alignment between technical data structures and clinical workflows
+- Data is distributed across 50+ relational tables  
+- Field-level meaning is not clearly documented  
+- Business logic is embedded implicitly in the schema  
+- Queries require cross-table validation to ensure correctness  
+
+As a result, generating reliable reports requires manual investigation and repeated validation.
 
 ---
 
-## Data Engineering Approach
+## Scope of Work
 
-### Domain Understanding
-- Collaborated with healthcare staff to understand operational and clinical workflows
-- Identified key concepts such as patient flow, clinical events, and timing-based measurements
+- Explored and mapped relevant tables for clinical and operational data  
+- Wrote SQL queries to extract patient and workflow-related information  
+- Identified relationships between tables through iterative querying  
+- Validated extracted data against real-world workflows with staff  
+- Refined queries based on inconsistencies and edge cases  
+
+---
+
+## Data Investigation Approach
 
 ### Schema Exploration
-- Analyzed HOSxP relational schema
-- Mapped relationships across multiple tables and modules
-- Identified primary keys, foreign keys, and implicit business logic
+- Reviewed table structures and key fields  
+- Identified join paths between related tables  
+- Tested relationships through sample queries  
 
-### SQL-Based Investigation
-- Performed iterative SQL querying to validate hypotheses
-- Cross-referenced multiple data sources for consistency checks
-- Refined understanding of ambiguous fields through repeated exploration
+### Query Development
+- Built SQL queries incrementally  
+- Cross-checked outputs across multiple tables  
+- Adjusted logic based on mismatched or inconsistent results  
 
-### LLM-Assisted Analysis
-- Used LLM tools to support schema interpretation
-- Generated alternative hypotheses for unclear data structures
-- Accelerated exploration of complex relational dependencies
-
-### Domain Validation
-- Validated interpretations with healthcare professionals
-- Ensured extracted data aligned with real-world clinical operations
+### Validation
+- Compared query results with expected real-world scenarios  
+- Confirmed interpretations with healthcare staff  
+- Iterated until results aligned with actual workflows  
 
 ---
 
-## Data Flow Architecture
+## Data Flow
 
-HOSxP Legacy Database  
-→ SQL Extraction Layer  
-→ Data Cleaning and Transformation Layer  
-→ Structured Healthcare Datasets  
-→ Reporting and Analytics Layer  
+HOSxP Database  
+→ SQL Query Layer  
+→ Data Validation  
+→ Cleaned Dataset  
+→ Reporting / Analysis  
 
 ---
 
 ## Tech Stack
 
-- SQL
-- HOSxP Hospital Information System
-- Data Modeling and Schema Analysis
-- Healthcare Domain Collaboration
-- LLM-assisted Data Investigation
+- SQL  
+- HOSxP Hospital Information System  
+- Schema exploration and relational data analysis  
 
 ---
 
-## Key Engineering Concepts
+## Key Learnings
 
-- Domain-driven data modeling
-- Iterative schema discovery
-- Hypothesis-driven SQL exploration
-- Data validation through domain experts
-- Bridging healthcare operations and data systems
-
----
-
-## Outcomes
-
-- Improved interpretability of legacy hospital data structures
-- Established repeatable methodology for healthcare data extraction
-- Enabled structured datasets for operational reporting use cases
-- Reduced ambiguity in clinical data interpretation
-- Supported foundation for future healthcare data platform development
+- Interpreting legacy systems requires both technical and domain understanding  
+- Schema relationships are not always explicit and must be validated  
+- Query correctness depends on cross-referencing multiple data sources  
+- Real-world data often contains inconsistencies that must be handled iteratively  
 
 ---
 
 ## Notes
 
-This system operates under real-world healthcare constraints, including:
-
-- Incomplete documentation of legacy systems
-- High complexity of relational healthcare data
-- Strong dependency on domain expertise for correct interpretation
-- Requirement for iterative validation and refinement of assumptions
+This work reflects practical experience working with a real hospital database where documentation is limited and correctness depends on validation with domain experts.
