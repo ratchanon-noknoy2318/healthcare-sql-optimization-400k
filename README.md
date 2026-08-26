@@ -1,12 +1,9 @@
-# HOSxP SQL Tools
+## How to Use
 
-SQL scripts for extracting, analyzing, masking, and migrating data from BMS-HOSxP.
-
-## Highlights
-
-- **Reverse Engineering:** Analyzed HOSxP database structures without ER diagrams or existing documentation.
-- **Data Privacy:** Implemented data masking to protect sensitive patient information during development and testing.
-- **Data Migration:** Extracted and transformed hospital data for integration with healthcare applications.
+1. Open the SQL Editor or click the ⚡ button.
+2. Open or copy the desired `.sql` script into the SQL Editor.
+3. Review the query and click **Run**.
+4. Review and verify the data before exporting it to Excel.
 
 ## SQL Scripts
 
@@ -26,32 +23,19 @@ SQL scripts for extracting, analyzing, masking, and migrating data from BMS-HOSx
 ```mermaid
 graph TD
 
-    patient["patient"]
-
-    pttype["pttype"]
-    pttypeno["pttypeno"]
-    occupation["occupation"]
-    religion["religion"]
-    thaiaddress["thaiaddress"]
-
     ovst["ovst"]
+    patient["patient"]
     vn_stat["vn_stat"]
-    opdscreen["opdscreen"]
-    ovstdiag["ovstdiag"]
+    pttype["pttype"]
+    opitemrece["opitemrece"]
+    nondrugitems["nondrugitems"]
+    icd101["icd101"]
 
-    kskdepartment["kskdepartment"]
-    spclty["spclty"]
-
-    patient --> ovst
-
-    patient --> pttype
-    patient --> pttypeno
-    patient --> occupation
-    patient --> religion
-    patient --> thaiaddress
-
+    ovst --> patient
     ovst --> vn_stat
-    ovst --> opdscreen
-    ovst --> ovstdiag
-    ovst --> kskdepartment
-    ovst --> spclty
+    ovst --> opitemrece
+
+    vn_stat --> pttype
+    vn_stat --> icd101
+
+    opitemrece --> nondrugitems
