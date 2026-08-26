@@ -1,9 +1,9 @@
 ## How to Use
 
 1. Open the SQL Editor or click the ⚡ button.
-2. Open or copy the desired `.sql` script into the SQL Editor.
-3. Review the query and click **Run**.
-4. Review and verify the data before exporting it to Excel.
+2. Copy the desired SQL query into the SQL Editor.
+3. Review the query and click **Run** or press **F9**.
+4. Verify the data before exporting it to Excel.
 
 ## SQL Scripts
 
