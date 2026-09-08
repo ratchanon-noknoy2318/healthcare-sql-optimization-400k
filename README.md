@@ -13,7 +13,8 @@
 
 ## Database Relationships
 
-```mermaid
+
+```mermaid id="h4n8cs"
 graph TD
 
     ovst["ovst"]
@@ -23,13 +24,20 @@ graph TD
     opitemrece["opitemrece"]
     nondrugitems["nondrugitems"]
     icd101["icd101"]
+    opdscreen["opdscreen"]
+    dtx["DTX"]
 
-    ovst --> patient
-    ovst --> vn_stat
-    ovst --> opitemrece
+    ovst -->|hn| patient
+    ovst -->|hn| vn_stat
+    ovst -->|hn| opitemrece
+    ovst -->|hn| opdscreen
 
     vn_stat --> pttype
     vn_stat --> icd101
 
     opitemrece --> nondrugitems
+
+    opdscreen -->|DTX| dtx
 ```
+
+
